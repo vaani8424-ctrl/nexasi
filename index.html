@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScaffoldHQ — Student Portfolio & Skills Platform</title>
+<meta name="description" content="ScaffoldHQ is a free student platform to take notes, build projects, track skills, and publish your academic work across LinkedIn and beyond. For Science, Arts, Commerce, and Law students.">
+<meta name="keywords" content="student portfolio, academic notes, skills tracker, student projects, publish to LinkedIn, science arts commerce law, student platform India">
+<meta name="author" content="ScaffoldHQ">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourusername.github.io/scaffoldhq/">
+<link rel="sitemap" type="application/xml" href="sitemap.xml">
+<!-- Open Graph (LinkedIn, WhatsApp, Facebook previews) -->
+<meta property="og:title" content="ScaffoldHQ — Student Portfolio & Skills Platform">
+<meta property="og:description" content="Take notes, build models, track skills, and publish your work. Free platform for Science, Arts, Commerce, and Law students.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourusername.github.io/scaffoldhq/">
+<meta property="og:image" content="https://yourusername.github.io/scaffoldhq/preview.png">
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ScaffoldHQ — Student Portfolio & Skills Platform">
+<meta name="twitter:description" content="Free platform for students to track skills, build projects, and publish work to LinkedIn.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & ROOT ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0e0e0e;--ink2:#3a3a3a;--ink3:#787878;
+  --bg:#f5f2ec;--bg2:#eceae4;--bg3:#ffffff;
+  --accent:#1a3a2a;--accent2:#2d6a4f;--accent3:#52b788;
+  --gold:#c9a84c;--gold2:#f0c050;
+  --red:#c0392b;--red2:#fdf0ef;
+  --border:#d4d0c8;--radius:12px;--radiuslg:20px;
+  --shadow:0 2px 16px rgba(0,0,0,0.09);
+  --transition:0.2s ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden}
+h1,h2,h3,h4,.syne{font-family:'Syne',sans-serif}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{cursor:pointer;font-family:'DM Sans',sans-serif}
+input,textarea,select{font-family:'DM Sans',sans-serif}
+
+/* ===== UTILITY ===== */
+.container{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.flex{display:flex}
+.flex-center{display:flex;align-items:center;justify-content:center}
+.gap-sm{gap:0.5rem}
+.gap-md{gap:1rem}
+.gap-lg{gap:1.5rem}
+.mt-sm{margin-top:0.5rem}
+.mt-md{margin-top:1rem}
+.mt-lg{margin-top:1.5rem}
+.mt-xl{margin-top:2.5rem}
+
+/* ===== TOAST ===== */
+#toast-container{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;gap:0.5rem}
+.toast{background:var(--accent);color:#fff;padding:0.75rem 1.25rem;border-radius:var(--radius);font-size:0.85rem;font-weight:500;box-shadow:var(--shadow);animation:slideIn 0.3s ease,fadeOut 0.3s ease 2.7s forwards;max-width:280px}
+.toast.success{background:var(--accent2)}
+.toast.warn{background:#c07a20}
+.toast.error{background:var(--red)}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0;pointer-events:none}}
+
+/* ===== NAV ===== */
+nav{background:var(--accent);color:#fff;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:62px;position:sticky;top:0;z-index:500;box-shadow:0 2px 12px rgba(0,0,0,0.18)}
+.nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-0.5px;color:#fff;user-select:none}
+.nav-brand span{color:var(--gold2)}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,0.78);font-size:0.88rem;font-weight:500;transition:color var(--transition)}
+.nav-links a:hover{color:#fff}
+.nav-btn{background:var(--gold);color:var(--accent);padding:7px 18px;border-radius:8px;font-weight:700;font-size:0.82rem;border:none;transition:background var(--transition);white-space:nowrap}
+.nav-btn:hover{background:var(--gold2)}
+.nav-btn.outline{background:transparent;border:1.5px solid rgba(255,255,255,0.35);color:#fff}
+.nav-btn.outline:hover{border-color:#fff;background:rgba(255,255,255,0.08)}
+.nav-actions{display:flex;gap:0.6rem;align-items:center}
+.nav-icon-btn{background:rgba(255,255,255,0.1);border:none;color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background var(--transition);position:relative}
+.nav-icon-btn:hover{background:rgba(255,255,255,0.2)}
+.notif-dot{position:absolute;top:5px;right:5px;width:8px;height:8px;background:var(--gold2);border-radius:50%;border:2px solid var(--accent)}
+
+/* ===== HERO ===== */
+.hero{background:var(--accent);color:#fff;padding:5.5rem 1.5rem 4.5rem;text-align:center;position:relative;overflow:hidden}
+.hero-bg-circle{position:absolute;border-radius:50%;pointer-events:none;opacity:0.06}
+.hero-bg-circle.c1{width:500px;height:500px;background:#52b788;top:-120px;left:-80px}
+.hero-bg-circle.c2{width:350px;height:350px;background:var(--gold2);bottom:-80px;right:-40px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,0.18);border:1px solid rgba(201,168,76,0.38);color:var(--gold2);font-size:0.75rem;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:1.6rem;letter-spacing:0.6px;text-transform:uppercase}
+.hero h1{font-size:clamp(2.2rem,5vw,3.9rem);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:1.1rem}
+.hero h1 em{font-style:normal;color:var(--gold2)}
+.hero p{font-size:1.05rem;color:rgba(255,255,255,0.72);max-width:560px;margin:0 auto 2.5rem;line-height:1.75}
+.hero-cta{display:flex;gap:0.9rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--accent);padding:13px 30px;border-radius:10px;font-weight:700;font-size:0.95rem;border:none;font-family:'Syne',sans-serif;transition:all var(--transition)}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#fff;padding:13px 30px;border-radius:10px;font-weight:600;font-size:0.95rem;border:1.5px solid rgba(255,255,255,0.35);font-family:'Syne',sans-serif;transition:all var(--transition)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.06)}
+.hero-stats{display:flex;gap:0;justify-content:center;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,0.1);flex-wrap:wrap}
+.stat-item{text-align:center;padding:0 2.5rem;border-right:1px solid rgba(255,255,255,0.1)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--gold2)}
+.stat-label{font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:3px}
+
+/* ===== SECTIONS ===== */
+section{padding:4.5rem 0}
+.section-label{font-size:0.72rem;font-weight:700;letter-spacing:2.5px;color:var(--accent3);text-transform:uppercase;margin-bottom:0.45rem}
+.section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.5px;margin-bottom:0.6rem;line-height:1.2}
+.section-sub{color:var(--ink3);line-height:1.72;max-width:520px;font-size:0.95rem}
+
+/* ===== FEATURES ===== */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.25rem;margin-top:2.5rem}
+.feature-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radiuslg);padding:1.75rem;transition:transform var(--transition),box-shadow var(--transition)}
+.feature-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.feature-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
+.feature-icon.g{background:#e7f5ef;color:var(--accent2)}
+.feature-icon.y{background:#fef7e0;color:#a07a20}
+.feature-icon.t{background:#e0f5f4;color:#1a8080}
+.feature-icon.r{background:#fef0ed;color:#b84a2f}
+.feature-icon.b{background:#eef3fd;color:#2a5cb0}
+.feature-icon.p{background:#f3eefe;color:#6340b8}
+.feature-card h3{font-size:1rem;font-weight:600;margin-bottom:0.45rem}
+.feature-card p{font-size:0.875rem;color:var(--ink3);line-height:1.65}
+
+/* ===== STREAMS ===== */
+.streams-section{background:var(--accent)}
+.streams-section .section-label{color:var(--accent3)}
+.streams-section .section-title{color:#fff}
+.streams-section .section-sub{color:rgba(255,255,255,0.62)}
+.streams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-top:2.5rem}
+.stream-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);padding:1.6rem;transition:background var(--transition),transform var(--transition);cursor:pointer}
+.stream-card:hover{background:rgba(255,255,255,0.13);transform:translateY(-2px)}
+.stream-emoji{font-size:2rem;margin-bottom:0.8rem;display:block}
+.stream-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.35rem}
+.stream-card p{font-size:0.8rem;color:rgba(255,255,255,0.55);line-height:1.55;margin-bottom:0.6rem}
+.stream-tag{background:rgba(201,168,76,0.18);color:var(--gold2);font-size:0.7rem;font-weight:600;padding:3px 9px;border-radius:12px;display:inline-block}
+
+/* ===== DASHBOARD ===== */
+.dashboard-section{background:var(--bg2)}
+.dash-shell{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radiuslg);overflow:hidden;margin-top:2.5rem;box-shadow:0 4px 32px rgba(0,0,0,0.09)}
+.dash-topbar{background:var(--accent);padding:0.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.dash-user{display:flex;align-items:center;gap:0.8rem}
+.dash-avatar{width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem;font-family:'Syne',sans-serif;flex-shrink:0}
+.dash-name{color:#fff;font-weight:600;font-size:0.9rem}
+.dash-role{color:rgba(255,255,255,0.58);font-size:0.75rem}
+.pub-badge{background:rgba(82,183,136,0.2);color:#7bdcb0;font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:10px;border:1px solid rgba(82,183,136,0.28);display:inline-flex;align-items:center;gap:5px}
+.dash-layout{display:grid;grid-template-columns:210px 1fr;min-height:400px}
+.dash-sidebar{background:var(--bg2);border-right:1px solid var(--border);padding:1.1rem 0}
+.dash-nav{display:flex;align-items:center;gap:0.6rem;padding:0.6rem 1.2rem;font-size:0.84rem;color:var(--ink2);cursor:pointer;transition:background var(--transition);border-left:3px solid transparent;white-space:nowrap;user-select:none}
+.dash-nav:hover{background:var(--bg3)}
+.dash-nav.active{background:var(--bg3);border-left-color:var(--accent2);color:var(--accent2);font-weight:600}
+.dash-nav-icon{font-size:1.1rem;width:20px;flex-shrink:0}
+.dash-main{padding:1.5rem;overflow:auto}
+.dash-sub-title{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:1rem;color:var(--ink)}
+.metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.5rem}
+.metric-box{background:var(--bg2);border-radius:var(--radius);padding:0.9rem 1rem}
+.metric-num{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--accent)}
+.metric-label{font-size:0.75rem;color:var(--ink3);margin-top:2px}
+.skill-list{display:flex;flex-direction:column;gap:0.7rem}
+.skill-row{background:var(--bg2);border-radius:10px;padding:0.8rem 1rem}
+.skill-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem}
+.skill-name{font-size:0.85rem;font-weight:500}
+.skill-pct{font-size:0.8rem;font-weight:700;color:var(--accent2)}
+.progress-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent3));border-radius:3px;transition:width 0.6s ease}
+
+/* ===== PRIVACY ===== */
+.privacy-section{background:var(--bg3)}
+.toggle-group{margin-top:2.5rem;max-width:540px;display:flex;flex-direction:column;gap:1rem}
+.toggle-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radiuslg);padding:1.5rem 1.75rem}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.toggle-info h4{font-size:0.93rem;font-weight:600;margin-bottom:0.25rem;font-family:'Syne',sans-serif}
+.toggle-info p{font-size:0.82rem;color:var(--ink3);line-height:1.5}
+.toggle-switch{position:relative;width:52px;height:28px;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0;position:absolute}
+.toggle-slider{position:absolute;inset:0;background:#ccc;border-radius:14px;cursor:pointer;transition:0.3s}
+.toggle-slider::before{content:'';position:absolute;width:22px;height:22px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:0.3s;box-shadow:0 1px 4px rgba(0,0,0,0.15)}
+input:checked+.toggle-slider{background:var(--accent2)}
+input:checked+.toggle-slider::before{transform:translateX(24px)}
+
+/* ===== UPLOAD ===== */
+.upload-section{background:var(--bg2)}
+.upload-zone{border:2px dashed var(--border);border-radius:var(--radiuslg);padding:3rem 2rem;text-align:center;cursor:pointer;transition:all var(--transition);max-width:500px;position:relative}
+.upload-zone:hover,.upload-zone.drag-over{border-color:var(--accent2);background:rgba(45,106,79,0.04)}
+.upload-icon{font-size:2.6rem;display:block;margin-bottom:1rem}
+.upload-zone h4{font-size:1rem;font-weight:600;margin-bottom:0.4rem}
+.upload-zone p{font-size:0.85rem;color:var(--ink3);margin-bottom:1rem}
+.fmt-row{display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap}
+.fmt{background:var(--bg3);border:1px solid var(--border);font-size:0.7rem;font-weight:600;padding:3px 8px;border-radius:6px;color:var(--ink2)}
+.file-input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.file-list{margin-top:1.25rem;max-width:500px;display:flex;flex-direction:column;gap:0.5rem}
+.file-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:0.65rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;font-size:0.85rem;animation:fadeSlide 0.25s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.file-name{font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-size{font-size:0.75rem;color:var(--ink3);white-space:nowrap}
+.file-del{background:none;border:none;color:var(--ink3);font-size:1rem;padding:2px 6px;border-radius:6px;transition:color var(--transition)}
+.file-del:hover{color:var(--red)}
+
+/* ===== PUBLISH ===== */
+.publish-section{background:var(--bg3)}
+.publish-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin-top:2rem}
+.publish-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center;cursor:pointer;transition:all var(--transition)}
+.publish-card:hover{border-color:var(--accent2);transform:translateY(-2px);box-shadow:var(--shadow)}
+.publish-logo{width:46px;height:46px;border-radius:10px;margin:0 auto 0.75rem;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.publish-card h4{font-size:0.9rem;font-weight:600;margin-bottom:0.2rem}
+.publish-card p{font-size:0.78rem;color:var(--ink3)}
+
+/* ===== COPYRIGHT ===== */
+.copyright-section{background:var(--bg2)}
+.copyright-panel{background:var(--accent);border-radius:var(--radiuslg);padding:2.5rem;margin-top:2rem;position:relative;overflow:hidden}
+.copyright-panel::after{content:'©';position:absolute;right:2rem;top:50%;transform:translateY(-50%);font-size:9rem;font-weight:900;color:rgba(255,255,255,0.04);font-family:'Syne',sans-serif;line-height:1;pointer-events:none}
+.copyright-panel h3{font-size:1.4rem;font-weight:800;margin-bottom:0.75rem;font-family:'Syne',sans-serif;color:#fff}
+.copyright-panel p{color:rgba(255,255,255,0.7);line-height:1.75;max-width:480px;font-size:0.9rem}
+.badge-row{display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:1.5rem}
+.cp-badge{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:#fff;padding:6px 13px;border-radius:20px;font-size:0.77rem;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+
+/* ===== DISCOVER ===== */
+.discover-section{background:var(--bg3)}
+.search-row{display:flex;gap:0.75rem;margin:1.75rem 0 0;max-width:520px}
+.search-input{flex:1;padding:10px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:0.9rem;background:var(--bg3);outline:none;transition:border-color var(--transition);color:var(--ink)}
+.search-input:focus{border-color:var(--accent2)}
+.search-btn{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-weight:600;font-size:0.88rem;transition:background var(--transition)}
+.search-btn:hover{background:var(--accent2)}
+.profiles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
+.profile-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;position:relative;transition:all var(--transition)}
+.profile-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.profile-card.blocked{opacity:0.4;pointer-events:none;filter:grayscale(1)}
+.pcard-top{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.9rem}
+.pcard-pic{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;font-family:'Syne',sans-serif;color:#fff;flex-shrink:0;user-select:none}
+.pcard-pic.a{background:#1a3a2a}
+.pcard-pic.b{background:#2d6a4f}
+.pcard-pic.c{background:#a07a20}
+.pcard-pic.d{background:#1a8080}
+.pcard-pic.e{background:#5b4db8}
+.pcard-pic.f{background:#b84a2f}
+.pcard-name{font-size:0.9rem;font-weight:600}
+.pcard-meta{font-size:0.75rem;color:var(--ink3)}
+.ptags{display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.8rem}
+.ptag{background:var(--bg3);border:1px solid var(--border);color:var(--ink2);font-size:0.71rem;padding:3px 7px;border-radius:7px;font-weight:500}
+.pworks{font-size:0.78rem;color:var(--ink3);margin-bottom:0.85rem}
+.pcard-actions{display:flex;gap:0.4rem;flex-wrap:wrap}
+.pcard-btn{flex:1;min-width:0;padding:6px 8px;border-radius:8px;font-size:0.76rem;font-weight:600;border:1.5px solid var(--border);background:var(--bg3);color:var(--ink2);transition:all var(--transition);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pcard-btn:hover{border-color:var(--accent2);color:var(--accent2);background:rgba(45,106,79,0.05)}
+.pcard-btn.msg{border-color:var(--accent2);color:var(--accent2)}
+.pcard-btn.msg:hover{background:var(--accent2);color:#fff}
+.pcard-btn.block-btn:hover{border-color:var(--red);color:var(--red);background:var(--red2)}
+.pcard-btn.rec-btn:hover{border-color:var(--gold);color:var(--accent)}
+
+/* ===== MESSAGING MODAL ===== */
+#msg-modal,.modal-overlay{position:fixed;inset:0;z-index:1000;display:none}
+.modal-overlay{background:rgba(0,0,0,0.45)}
+#msg-modal.open,.modal-overlay.open{display:flex;align-items:center;justify-content:center}
+.msg-panel{background:var(--bg3);border-radius:var(--radiuslg);width:min(480px,92vw);max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 48px rgba(0,0,0,0.22);position:relative;z-index:1001;animation:popIn 0.25s ease}
+@keyframes popIn{from{transform:scale(0.94);opacity:0}to{transform:scale(1);opacity:1}}
+.msg-header{background:var(--accent);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-shrink:0}
+.msg-header-info{display:flex;align-items:center;gap:0.75rem}
+.msg-to-pic{width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;font-family:'Syne',sans-serif;flex-shrink:0}
+.msg-to-name{font-weight:600;font-size:0.9rem;color:#fff}
+.msg-to-role{font-size:0.75rem;color:rgba(255,255,255,0.6)}
+.msg-close{background:rgba(255,255,255,0.12);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:1.1rem;flex-shrink:0;transition:background var(--transition)}
+.msg-close:hover{background:rgba(255,255,255,0.25)}
+.msg-body{flex:1;overflow-y:auto;padding:1rem 1.25rem;display:flex;flex-direction:column;gap:0.6rem;min-height:200px;max-height:320px}
+.msg-bubble{max-width:78%;padding:0.65rem 0.9rem;border-radius:14px;font-size:0.85rem;line-height:1.55}
+.msg-bubble.them{background:var(--bg2);border-bottom-left-radius:4px;align-self:flex-start}
+.msg-bubble.me{background:var(--accent2);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.msg-bubble .msg-time{font-size:0.68rem;opacity:0.55;margin-top:4px;display:block}
+.msg-bubble.them .msg-time{text-align:left}
+.msg-bubble.me .msg-time{text-align:right}
+.msg-footer{padding:1rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:0.6rem;flex-shrink:0;background:var(--bg3)}
+.msg-input{flex:1;padding:9px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:0.88rem;resize:none;outline:none;transition:border-color var(--transition);background:var(--bg2);color:var(--ink)}
+.msg-input:focus{border-color:var(--accent2);background:var(--bg3)}
+.msg-send{background:var(--accent2);color:#fff;border:none;padding:9px 16px;border-radius:10px;font-weight:600;font-size:0.85rem;transition:background var(--transition);white-space:nowrap}
+.msg-send:hover{background:var(--accent)}
+.msg-warn{font-size:0.75rem;color:var(--ink3);padding:0.4rem 1.25rem;background:rgba(201,168,76,0.08);border-top:1px solid rgba(201,168,76,0.18);text-align:center;flex-shrink:0}
+
+/* ===== BLOCK MODAL ===== */
+#block-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center}
+#block-modal.open{display:flex}
+.block-panel{background:var(--bg3);border-radius:var(--radiuslg);width:min(380px,88vw);overflow:hidden;box-shadow:0 8px 48px rgba(0,0,0,0.22);animation:popIn 0.25s ease;position:relative;z-index:1001}
+.block-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border)}
+.block-header h3{font-size:1rem;font-weight:700;color:var(--red);font-family:'Syne',sans-serif;margin-bottom:0.25rem}
+.block-header p{font-size:0.83rem;color:var(--ink3);line-height:1.5}
+.block-reasons{padding:1rem 1.5rem;display:flex;flex-direction:column;gap:0.5rem}
+.block-reason{display:flex;align-items:center;gap:0.65rem;cursor:pointer;padding:0.5rem 0.65rem;border-radius:8px;transition:background var(--transition)}
+.block-reason:hover{background:var(--bg2)}
+.block-reason input{accent-color:var(--red);width:16px;height:16px;flex-shrink:0}
+.block-reason label{font-size:0.85rem;cursor:pointer;color:var(--ink2)}
+.block-footer{padding:0.9rem 1.5rem;display:flex;gap:0.6rem;border-top:1px solid var(--border)}
+.block-cancel{flex:1;padding:9px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg2);color:var(--ink2);font-weight:600;font-size:0.85rem;transition:all var(--transition)}
+.block-cancel:hover{border-color:var(--ink3)}
+.block-confirm{flex:1;padding:9px;border-radius:8px;background:var(--red);color:#fff;border:none;font-weight:700;font-size:0.85rem;transition:background var(--transition)}
+.block-confirm:hover{background:#a12820}
+
+/* ===== FOOTER ===== */
+footer{background:var(--accent);padding:2.5rem 1.5rem 2rem}
+.footer-inner{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:0.5rem;text-align:center}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#fff}
+.footer-brand span{color:var(--gold2)}
+.footer-tagline{color:rgba(255,255,255,0.6);font-size:0.85rem}
+.footer-links{display:flex;gap:1.5rem;margin-top:0.5rem;flex-wrap:wrap;justify-content:center}
+.footer-links a{color:rgba(255,255,255,0.55);font-size:0.8rem;transition:color var(--transition)}
+.footer-links a:hover{color:rgba(255,255,255,0.9)}
+.footer-copy{color:rgba(255,255,255,0.35);font-size:0.73rem;margin-top:0.75rem}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:680px){
+  .dash-layout{grid-template-columns:1fr}
+  .dash-sidebar{display:none}
+  .metrics-row{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:0;flex-direction:row}
+  .stat-item{padding:0 1.2rem;flex:1}
+  nav .nav-links a:not(.nav-btn){display:none}
+}
+@media(max-width:420px){
+  .hero-stats{flex-direction:column;gap:1.2rem}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);padding:0.75rem 0}
+  .stat-item:last-child{border-bottom:none}
+  .metrics-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container" role="status" aria-live="polite"></div>
+
+<!-- MODAL OVERLAY (shared) -->
+<div class="modal-overlay" id="modal-bg"></div>
+
+<!-- ===== MESSAGING MODAL ===== -->
+<div id="msg-modal" role="dialog" aria-modal="true" aria-labelledby="msg-title">
+  <div class="msg-panel">
+    <div class="msg-header">
+      <div class="msg-header-info">
+        <div class="msg-to-pic" id="msg-to-pic">KM</div>
+        <div>
+          <div class="msg-to-name" id="msg-title">Kiran Mehta</div>
+          <div class="msg-to-role" id="msg-to-role">Science · IIT Bombay</div>
+        </div>
+      </div>
+      <button class="msg-close" id="msg-close-btn" aria-label="Close message window">&#x2715;</button>
+    </div>
+    <div class="msg-body" id="msg-body">
+      <div class="msg-bubble them">
+        Hi! I saw your market research project — really impressive work. Would love to collaborate on something similar.
+        <span class="msg-time">10:32 AM</span>
+      </div>
+      <div class="msg-bubble me">
+        Thank you! I have been working on a new project in consumer behaviour. Let us connect!
+        <span class="msg-time">10:35 AM</span>
+      </div>
+    </div>
+    <div class="msg-footer">
+      <textarea class="msg-input" id="msg-input" rows="1" placeholder="Type a message… (Shift+Enter for newline)" aria-label="Message input"></textarea>
+      <button class="msg-send" id="msg-send-btn">Send</button>
+    </div>
+    <div class="msg-warn">&#9888; Keep messages respectful. Spam or harassment will result in account suspension.</div>
+  </div>
+</div>
+
+<!-- ===== BLOCK MODAL ===== -->
+<div id="block-modal" role="dialog" aria-modal="true" aria-labelledby="block-title">
+  <div class="block-panel">
+    <div class="block-header">
+      <h3 id="block-title">&#128683; Block Profile</h3>
+      <p id="block-desc">They will no longer be able to view your profile, message you, or find you in search. Please select a reason.</p>
+    </div>
+    <div class="block-reasons" role="group" aria-labelledby="block-title">
+      <label class="block-reason"><input type="radio" name="block-reason" value="spam" checked><span>Sending spam or unsolicited messages</span></label>
+      <label class="block-reason"><input type="radio" name="block-reason" value="harassment"><span>Harassment or abusive behaviour</span></label>
+      <label class="block-reason"><input type="radio" name="block-reason" value="fake"><span>Fake or impersonation account</span></label>
+      <label class="block-reason"><input type="radio" name="block-reason" value="inappropriate"><span>Sharing inappropriate content</span></label>
+      <label class="block-reason"><input type="radio" name="block-reason" value="other"><span>Other reason</span></label>
+    </div>
+    <div class="block-footer">
+      <button class="block-cancel" id="block-cancel-btn">Cancel</button>
+      <button class="block-confirm" id="block-confirm-btn">Block &amp; Report</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-brand">Scaffold<span>HQ</span></div>
+  <div class="nav-links">
+    <a href="#discover">Discover</a>
+    <a href="#streams">Streams</a>
+    <a href="#features">Features</a>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="nav-notif-btn" aria-label="Notifications" title="Notifications">
+        &#128276;
+        <span class="notif-dot" id="notif-dot"></span>
+      </button>
+      <button class="nav-btn outline" onclick="showToast('Sign in coming soon!','warn')">Sign In</button>
+      <button class="nav-btn" onclick="showToast('Welcome! Account created.','success')">Sign Up Free</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-badge">&#127891; For Students &bull; By Creators</div>
+  <h1>Your <em>Academic Portfolio</em><br>Meets the Real World</h1>
+  <p>Take notes, build models, track skills, and publish your work across LinkedIn and beyond — all in one platform built for Science, Arts, Commerce, and Law students.</p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="showToast('Welcome to ScaffoldHQ! Account created.','success')">Get Started Free</button>
+    <button class="btn-ghost" onclick="scrollToSection('features')">Explore Features</button>
+  </div>
+  <div class="hero-stats" role="list">
+    <div class="stat-item" role="listitem"><div class="stat-num">4</div><div class="stat-label">Academic Streams</div></div>
+    <div class="stat-item" role="listitem"><div class="stat-num">&#8734;</div><div class="stat-label">Projects &amp; Notes</div></div>
+    <div class="stat-item" role="listitem"><div class="stat-num">100%</div><div class="stat-label">Creator Owned</div></div>
+    <div class="stat-item" role="listitem"><div class="stat-num">1-click</div><div class="stat-label">LinkedIn Publish</div></div>
+  </div>
+</header>
+
+<!-- ===== FEATURES ===== -->
+<section id="features">
+  <div class="container">
+    <div class="section-label">Core Features</div>
+    <h2 class="section-title">Everything a student creator needs</h2>
+    <p class="section-sub">From first idea to published portfolio — take notes, track skills, collaborate, and share your academic journey.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon g">&#128214;</div>
+        <h3>Smart Notes &amp; Notebooks</h3>
+        <p>Organise notes by subject, stream, or project. Rich text, code blocks, diagrams, and media — all in one place with version history.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon y">&#128188;</div>
+        <h3>Project Workspace</h3>
+        <p>Build models, write reports, collaborate on group projects. Store files, track progress, and maintain a clean version history.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon t">&#128202;</div>
+        <h3>Skills Tracker</h3>
+        <p>Log skills across categories — technical, creative, analytical, legal — and visualise your growth over time with charts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon r">&#128279;</div>
+        <h3>One-Click Publishing</h3>
+        <p>Publish work directly to LinkedIn, Google Sheets, or generate a shareable URL as verifiable proof of work for recruiters.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon b">&#128274;</div>
+        <h3>Public &amp; Private Domains</h3>
+        <p>Switch any project between public (visible to recruiters) and private (personal) with a single toggle — no data loss, instant effect.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon p">&#128172;</div>
+        <h3>Direct Messaging</h3>
+        <p>Message any creator to collaborate, ask questions, or seek recommendations. Built-in spam detection keeps your inbox clean.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon g">&#128269;</div>
+        <h3>Creator Discovery</h3>
+        <p>Find peers by stream, skill, or institution. View their public work and send or receive recommendations to build your network.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon r">&#128683;</div>
+        <h3>Block &amp; Report</h3>
+        <p>Block harmful profiles instantly — they lose access to your profile, messages, and search results. All reports are reviewed by our trust team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STREAMS ===== -->
+<section class="streams-section" id="streams">
+  <div class="container">
+    <div class="section-label">Academic Streams</div>
+    <h2 class="section-title">Tailored for every discipline</h2>
+    <p class="section-sub">Navigate project templates, skills frameworks, and community built specifically for your field of study.</p>
+    <div class="streams-grid">
+      <div class="stream-card" onclick="showToast('Science stream selected!','success')" role="button" tabindex="0">
+        <span class="stream-emoji">&#128300;</span>
+        <h3>Science</h3>
+        <p>Lab reports, research papers, experiment logs, data analysis, and computational models.</p>
+        <span class="stream-tag">Physics &bull; Chemistry &bull; Biology &bull; Math</span>
+      </div>
+      <div class="stream-card" onclick="showToast('Arts stream selected!','success')" role="button" tabindex="0">
+        <span class="stream-emoji">&#127912;</span>
+        <h3>Arts &amp; Humanities</h3>
+        <p>Portfolio pieces, essays, creative projects, exhibitions, writing collections, and critiques.</p>
+        <span class="stream-tag">Literature &bull; Design &bull; History &bull; Fine Arts</span>
+      </div>
+      <div class="stream-card" onclick="showToast('Commerce stream selected!','success')" role="button" tabindex="0">
+        <span class="stream-emoji">&#128202;</span>
+        <h3>Commerce</h3>
+        <p>Business plans, financial models, case studies, market research, and investor pitch decks.</p>
+        <span class="stream-tag">Finance &bull; Marketing &bull; Economics &bull; B.Com</span>
+      </div>
+      <div class="stream-card" onclick="showToast('Law stream selected!','success')" role="button" tabindex="0">
+        <span class="stream-emoji">&#9878;&#65039;</span>
+        <h3>Law</h3>
+        <p>Case briefs, moot court preparation, legislation analysis, and legal writing portfolios.</p>
+        <span class="stream-tag">Constitutional &bull; Corporate &bull; Criminal &bull; Civil</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DASHBOARD ===== -->
+<section class="dashboard-section">
+  <div class="container">
+    <div class="section-label">Your Dashboard</div>
+    <h2 class="section-title">A command centre for your work</h2>
+    <p class="section-sub">Track skills, manage projects, and monitor your published work — all from one clean, distraction-free workspace.</p>
+    <div class="dash-shell">
+      <div class="dash-topbar">
+        <div class="dash-user">
+          <div class="dash-avatar" aria-hidden="true">AR</div>
+          <div>
+            <div class="dash-name">Aanya Rao</div>
+            <div class="dash-role">Commerce &bull; Year 2 &bull; Delhi University</div>
+          </div>
+        </div>
+        <span class="pub-badge">&#10003; Public Profile &bull; Copyright Protected</span>
+      </div>
+      <div class="dash-layout">
+        <nav class="dash-sidebar" aria-label="Dashboard navigation">
+          <div class="dash-nav active" onclick="switchDashTab(this,'overview')" tabindex="0" role="button"><span class="dash-nav-icon">&#9783;</span>Overview</div>
+          <div class="dash-nav" onclick="switchDashTab(this,'notes')" tabindex="0" role="button"><span class="dash-nav-icon">&#128214;</span>Notes</div>
+          <div class="dash-nav" onclick="switchDashTab(this,'projects')" tabindex="0" role="button"><span class="dash-nav-icon">&#128188;</span>Projects</div>
+          <div class="dash-nav" onclick="switchDashTab(this,'skills')" tabindex="0" role="button"><span class="dash-nav-icon">&#128202;</span>Skills</div>
+          <div class="dash-nav" onclick="switchDashTab(this,'uploads')" tabindex="0" role="button"><span class="dash-nav-icon">&#8593;</span>Uploads</div>
+          <div class="dash-nav" onclick="switchDashTab(this,'published')" tabindex="0" role="button"><span class="dash-nav-icon">&#127760;</span>Published</div>
+          <div class="dash-nav" onclick="switchDashTab(this,'messages')" tabindex="0" role="button"><span class="dash-nav-icon">&#128172;</span>Messages</div>
+          <div class="dash-nav" onclick="switchDashTab(this,'network')" tabindex="0" role="button"><span class="dash-nav-icon">&#128101;</span>Network</div>
+          <div class="dash-nav" onclick="switchDashTab(this,'privacy')" tabindex="0" role="button"><span class="dash-nav-icon">&#128274;</span>Privacy</div>
+        </nav>
+        <div class="dash-main" id="dash-content">
+          <!-- Overview tab (default) -->
+          <div id="tab-overview">
+            <div class="dash-sub-title">Snapshot</div>
+            <div class="metrics-row">
+              <div class="metric-box"><div class="metric-num">12</div><div class="metric-label">Projects</div></div>
+              <div class="metric-box"><div class="metric-num">7</div><div class="metric-label">Published</div></div>
+              <div class="metric-box"><div class="metric-num">94%</div><div class="metric-label">Avg Skill Progress</div></div>
+            </div>
+            <div class="dash-sub-title">Skills Progress</div>
+            <div class="skill-list">
+              <div class="skill-row"><div class="skill-top"><span class="skill-name">Financial Modelling</span><span class="skill-pct">85%</span></div><div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div></div>
+              <div class="skill-row"><div class="skill-top"><span class="skill-name">Data Analysis</span><span class="skill-pct">72%</span></div><div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div></div>
+              <div class="skill-row"><div class="skill-top"><span class="skill-name">Business Communication</span><span class="skill-pct">90%</span></div><div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div></div>
+              <div class="skill-row"><div class="skill-top"><span class="skill-name">Market Research</span><span class="skill-pct">68%</span></div><div class="progress-bar"><div class="progress-fill" style="width:68%"></div></div></div>
+            </div>
+          </div>
+          <!-- Other tabs (empty placeholders shown on click) -->
+          <div id="tab-notes" class="hidden"><p style="color:var(--ink3);font-size:0.9rem;padding:1rem 0">Your notes will appear here. Click <strong>+ New Note</strong> to begin.</p></div>
+          <div id="tab-projects" class="hidden"><p style="color:var(--ink3);font-size:0.9rem;padding:1rem 0">Your projects will appear here. Click <strong>+ New Project</strong> to begin.</p></div>
+          <div id="tab-skills" class="hidden"><p style="color:var(--ink3);font-size:0.9rem;padding:1rem 0">Add skills by stream and track your mastery over time.</p></div>
+          <div id="tab-uploads" class="hidden"><p style="color:var(--ink3);font-size:0.9rem;padding:1rem 0">Files you upload will be listed here for quick access and publishing.</p></div>
+          <div id="tab-published" class="hidden"><p style="color:var(--ink3);font-size:0.9rem;padding:1rem 0">7 works published &bull; Last published to LinkedIn 2 days ago.</p></div>
+          <div id="tab-messages" class="hidden"><p style="color:var(--ink3);font-size:0.9rem;padding:1rem 0">Your message threads will appear here. Find a creator in <a href="#discover" style="color:var(--accent2);font-weight:600">Discover</a> and start a conversation.</p></div>
+          <div id="tab-network" class="hidden"><p style="color:var(--ink3);font-size:0.9rem;padding:1rem 0">14 connections &bull; 3 pending recommendations. Explore the Discover section to grow your network.</p></div>
+          <div id="tab-privacy" class="hidden"><p style="color:var(--ink3);font-size:0.9rem;padding:1rem 0">Profile is <strong>Public</strong>. Manage individual project visibility in the Projects tab. Blocked users: 0.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRIVACY ===== -->
+<section class="privacy-section" id="privacy">
+  <div class="container">
+    <div class="section-label">Privacy Controls</div>
+    <h2 class="section-title">You control who sees what</h2>
+    <p class="section-sub">Switch your entire profile or any individual project between public and private at any time — no friction, no data loss.</p>
+    <div class="toggle-group">
+      <div class="toggle-card">
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <h4>&#128275; Profile Visibility</h4>
+            <p id="profile-vis-text">Your profile is <strong>Public</strong> — visible to recruiters and peers searching by skill or stream.</p>
+          </div>
+          <label class="toggle-switch" aria-label="Toggle profile visibility">
+            <input type="checkbox" checked id="toggle-profile" onchange="onToggle(this,'profile-vis-text','Profile is now Public.','Profile set to Private.')">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="toggle-card">
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <h4>&#128193; Project: Market Research Report</h4>
+            <p id="proj1-vis-text">This project is <strong>Private</strong> — only you can see it. Toggle to publish.</p>
+          </div>
+          <label class="toggle-switch" aria-label="Toggle project visibility">
+            <input type="checkbox" id="toggle-proj1" onchange="onToggle(this,'proj1-vis-text','Project is now Public.','Project set to Private.')">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="toggle-card">
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <h4>&#128213; Notes: Constitutional Law Digest</h4>
+            <p id="notes1-vis-text">These notes are <strong>Public</strong> — shareable with classmates and open for recommendations.</p>
+          </div>
+          <label class="toggle-switch" aria-label="Toggle notes visibility">
+            <input type="checkbox" checked id="toggle-notes1" onchange="onToggle(this,'notes1-vis-text','Notes are now Public.','Notes set to Private.')">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UPLOAD ===== -->
+<section class="upload-section" id="upload">
+  <div class="container">
+    <div class="section-label">Upload &amp; Publish</div>
+    <h2 class="section-title">Share your work anywhere</h2>
+    <p class="section-sub">Upload projects, PDFs, models, spreadsheets, presentations — then push them to Google Sheets, LinkedIn, or your public portfolio URL.</p>
+    <div class="upload-zone" id="upload-zone" role="button" tabindex="0" aria-label="Upload files">
+      <input type="file" class="file-input" id="file-input" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.zip,.py,.js,.ts,.html,.css,.txt,.csv" aria-label="Choose files to upload">
+      <span class="upload-icon">&#9729;&#65039;</span>
+      <h4>Drag &amp; drop your work here</h4>
+      <p>Or click to browse — all common academic file types supported</p>
+      <div class="fmt-row">
+        <span class="fmt">PDF</span><span class="fmt">DOCX</span><span class="fmt">XLSX</span><span class="fmt">PPTX</span>
+        <span class="fmt">JPG/PNG</span><span class="fmt">ZIP</span><span class="fmt">Code</span><span class="fmt">CSV</span>
+      </div>
+    </div>
+    <div class="file-list" id="file-list" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ===== PUBLISH ===== -->
+<section class="publish-section" id="publish">
+  <div class="container">
+    <div class="section-label">Integrations</div>
+    <h2 class="section-title">Publish as proof of work</h2>
+    <p class="section-sub">Send your projects directly to professional platforms and let your work speak for itself. All exports are timestamped and copyright-stamped.</p>
+    <div class="publish-grid">
+      <div class="publish-card" onclick="showToast('Publishing to LinkedIn…','success')" role="button" tabindex="0">
+        <div class="publish-logo" style="background:#e8f0fb">&#128279;</div>
+        <h4>LinkedIn</h4>
+        <p>Post as featured work or article</p>
+      </div>
+      <div class="publish-card" onclick="showToast('Exporting to Google Sheets…','success')" role="button" tabindex="0">
+        <div class="publish-logo" style="background:#e8f5e9">&#128202;</div>
+        <h4>Google Sheets</h4>
+        <p>Export data and skills trackers</p>
+      </div>
+      <div class="publish-card" onclick="showToast('Syncing to Google Drive…','success')" role="button" tabindex="0">
+        <div class="publish-logo" style="background:#fef7e0">&#128196;</div>
+        <h4>Google Drive</h4>
+        <p>Backup and share documents</p>
+      </div>
+      <div class="publish-card" onclick="copyPortfolioLink()" role="button" tabindex="0">
+        <div class="publish-logo" style="background:#e8f5ef">&#127760;</div>
+        <h4>Public Portfolio URL</h4>
+        <p>One shareable link for all platforms</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COPYRIGHT ===== -->
+<section class="copyright-section">
+  <div class="container">
+    <div class="section-label">Ownership</div>
+    <h2 class="section-title">Your work. Your copyright. Always.</h2>
+    <p class="section-sub">ScaffoldHQ never claims rights over anything you create, upload, or publish. You retain full intellectual property at all times.</p>
+    <div class="copyright-panel">
+      <h3>Creator Rights Policy</h3>
+      <p>Every note, project, model, and upload on ScaffoldHQ belongs exclusively to you. We are a platform, not a publisher. Your copyright is auto-stamped on every work at the time of creation. We do not license, sell, or share your content with any third parties — ever.</p>
+      <div class="badge-row">
+        <span class="cp-badge">&#128737; Auto Copyright Stamp</span>
+        <span class="cp-badge">&#128274; No Third-Party Sharing</span>
+        <span class="cp-badge">&#128196; Downloadable IP Certificate</span>
+        <span class="cp-badge">&#169; CC Licence Options</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DISCOVER ===== -->
+<section class="discover-section" id="discover">
+  <div class="container">
+    <div class="section-label">Creator Discovery</div>
+    <h2 class="section-title">Find, message, and connect with peers</h2>
+    <p class="section-sub">Search by name, stream, or skill. View public work, send a direct message to collaborate, or block profiles that feel unsafe.</p>
+    <div class="search-row">
+      <input class="search-input" type="text" id="search-input" placeholder="Search by name, stream, or skill…" aria-label="Search creators" oninput="filterProfiles(this.value)">
+      <button class="search-btn" onclick="filterProfiles(document.getElementById('search-input').value)">&#128269; Search</button>
+    </div>
+    <div class="profiles-grid" id="profiles-grid">
+      <!-- Profiles injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Scaffold<span>HQ</span></div>
+    <div class="footer-tagline">For students &bull; By creators &bull; Owned by you</div>
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#streams">Streams</a>
+      <a href="#discover">Discover</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#upload">Upload</a>
+      <a href="#publish">Publish</a>
+    </div>
+    <div class="footer-copy">&copy; 2025 ScaffoldHQ &mdash; All user content is copyright of its respective creators. Platform rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* ===== TOAST ===== */
+function showToast(msg, type) {
+  var c = document.getElementById('toast-container');
+  var t = document.createElement('div');
+  t.className = 'toast' + (type ? ' ' + type : '');
+  t.textContent = msg;
+  t.setAttribute('role', 'alert');
+  c.appendChild(t);
+  setTimeout(function() { if (t.parentNode) t.parentNode.removeChild(t); }, 3200);
+}
+
+/* ===== SCROLL ===== */
+function scrollToSection(id) {
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ===== DASHBOARD TABS ===== */
+function switchDashTab(el, tabId) {
+  document.querySelectorAll('.dash-nav').forEach(function(n) { n.classList.remove('active'); });
+  el.classList.add('active');
+  document.querySelectorAll('#dash-content > div').forEach(function(d) { d.classList.add('hidden'); });
+  var tab = document.getElementById('tab-' + tabId);
+  if (tab) tab.classList.remove('hidden');
+}
+document.querySelectorAll('.dash-nav').forEach(function(nav) {
+  nav.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); nav.click(); }
+  });
+});
+
+/* ===== PRIVACY TOGGLES ===== */
+function onToggle(input, textId, onMsg, offMsg) {
+  showToast(input.checked ? onMsg : offMsg, 'success');
+}
+
+/* ===== UPLOAD ===== */
+var uploadedFiles = [];
+var zone = document.getElementById('upload-zone');
+var fileInput = document.getElementById('file-input');
+var fileList = document.getElementById('file-list');
+
+zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('drag-over'); });
+zone.addEventListener('dragleave', function() { zone.classList.remove('drag-over'); });
+zone.addEventListener('drop', function(e) {
+  e.preventDefault();
+  zone.classList.remove('drag-over');
+  handleFiles(e.dataTransfer.files);
+});
+zone.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
+});
+fileInput.addEventListener('change', function() { handleFiles(fileInput.files); fileInput.value = ''; });
+
+function handleFiles(files) {
+  var added = 0;
+  for (var i = 0; i < files.length; i++) {
+    var f = files[i];
+    var maxMB = 50;
+    if (f.size > maxMB * 1024 * 1024) { showToast(f.name + ' exceeds 50 MB limit.', 'error'); continue; }
+    // Basic spam/malicious check — block executable extensions
+    var banned = ['.exe', '.bat', '.cmd', '.sh', '.msi', '.vbs', '.js', '.jar'];
+    var ext = f.name.substring(f.name.lastIndexOf('.')).toLowerCase();
+    if (banned.indexOf(ext) !== -1) { showToast('File type not allowed: ' + ext, 'error'); continue; }
+    uploadedFiles.push(f);
+    renderFileItem(f, uploadedFiles.length - 1);
+    added++;
+  }
+  if (added > 0) showToast(added + ' file' + (added > 1 ? 's' : '') + ' added!', 'success');
+}
+
+function renderFileItem(f, idx) {
+  var item = document.createElement('div');
+  item.className = 'file-item';
+  item.id = 'file-' + idx;
+  var sz = f.size < 1024 ? f.size + ' B' : f.size < 1024 * 1024 ? Math.round(f.size / 1024) + ' KB' : (f.size / (1024 * 1024)).toFixed(1) + ' MB';
+  item.innerHTML = '<span class="file-name" title="' + escHtml(f.name) + '">' + escHtml(f.name) + '</span>'
+    + '<span class="file-size">' + sz + '</span>'
+    + '<button class="file-del" aria-label="Remove ' + escHtml(f.name) + '" onclick="removeFile(' + idx + ')">&#10005;</button>';
+  fileList.appendChild(item);
+}
+
+function removeFile(idx) {
+  uploadedFiles[idx] = null;
+  var el = document.getElementById('file-' + idx);
+  if (el) el.remove();
+  showToast('File removed.', '');
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ===== PUBLISH ===== */
+function copyPortfolioLink() {
+  var link = 'https://scaffoldhq.app/u/aanya-rao';
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(link).then(function() { showToast('Portfolio link copied!', 'success'); });
+  } else {
+    showToast('Portfolio link: ' + link, 'success');
+  }
+}
+
+/* ===== PROFILES DATA ===== */
+var PROFILES = [
+  { id: 'km', initials: 'KM', cls: 'b', name: 'Kiran Mehta', meta: 'Science · IIT Bombay', tags: ['Physics', 'Python', 'Data Analysis'], works: 11, role: 'Science · IIT Bombay' },
+  { id: 'ar', initials: 'AR', cls: 'a', name: 'Aanya Rao', meta: 'Commerce · Delhi University', tags: ['Finance', 'Excel', 'Marketing'], works: 7, role: 'Commerce · Delhi University' },
+  { id: 'sv', initials: 'SV', cls: 'c', name: 'Sneha Verma', meta: 'Law · NLU Bangalore', tags: ['Constitutional', 'Research', 'Moot'], works: 5, role: 'Law · NLU Bangalore' },
+  { id: 'rt', initials: 'RT', cls: 'd', name: 'Rahul Trivedi', meta: 'Arts · Jadavpur University', tags: ['Literature', 'Design', 'Film'], works: 9, role: 'Arts · Jadavpur University' },
+  { id: 'pj', initials: 'PJ', cls: 'e', name: 'Priya Joshi', meta: 'Commerce · Mumbai University', tags: ['Accounting', 'Tax', 'Audit'], works: 6, role: 'Commerce · Mumbai University' },
+  { id: 'ns', initials: 'NS', cls: 'f', name: 'Naman Singh', meta: 'Science · BITS Pilani', tags: ['Chemistry', 'Research', 'Lab'], works: 8, role: 'Science · BITS Pilani' }
+];
+var blockedIds = {};
+
+function renderProfiles(list) {
+  var grid = document.getElementById('profiles-grid');
+  grid.innerHTML = '';
+  if (!list.length) {
+    grid.innerHTML = '<p style="color:var(--ink3);font-size:0.9rem;padding:0.5rem 0;grid-column:1/-1">No creators found. Try a different search.</p>';
+    return;
+  }
+  list.forEach(function(p) {
+    if (blockedIds[p.id]) return;
+    var tagsHtml = p.tags.map(function(t) { return '<span class="ptag">' + escHtml(t) + '</span>'; }).join('');
+    var card = document.createElement('div');
+    card.className = 'profile-card';
+    card.id = 'pcard-' + p.id;
+    card.innerHTML =
+      '<div class="pcard-top">'
+      + '<div class="pcard-pic ' + p.cls + '" aria-hidden="true">' + p.initials + '</div>'
+      + '<div><div class="pcard-name">' + escHtml(p.name) + '</div><div class="pcard-meta">' + escHtml(p.meta) + '</div></div>'
+      + '</div>'
+      + '<div class="ptags">' + tagsHtml + '</div>'
+      + '<div class="pworks">&#128188; ' + p.works + ' public projects</div>'
+      + '<div class="pcard-actions">'
+      + '<button class="pcard-btn msg" onclick="openMsg(\'' + p.id + '\')" aria-label="Message ' + escHtml(p.name) + '">&#128172; Message</button>'
+      + '<button class="pcard-btn rec-btn" onclick="sendRec(\'' + escHtml(p.name) + '\')" aria-label="Recommend ' + escHtml(p.name) + '">&#11088; Recommend</button>'
+      + '<button class="pcard-btn block-btn" onclick="openBlock(\'' + p.id + '\',\'' + escHtml(p.name) + '\')" aria-label="Block ' + escHtml(p.name) + '">&#128683; Block</button>'
+      + '</div>';
+    grid.appendChild(card);
+  });
+}
+
+function filterProfiles(query) {
+  var q = query.trim().toLowerCase();
+  var filtered = PROFILES.filter(function(p) {
+    if (blockedIds[p.id]) return false;
+    if (!q) return true;
+    return p.name.toLowerCase().includes(q)
+      || p.meta.toLowerCase().includes(q)
+      || p.tags.some(function(t) { return t.toLowerCase().includes(q); });
+  });
+  renderProfiles(filtered);
+}
+
+renderProfiles(PROFILES);
+
+function sendRec(name) {
+  showToast('Recommendation sent to ' + name + '!', 'success');
+}
+
+/* ===== MESSAGING ===== */
+var currentMsgProfile = null;
+var conversations = {};
+
+function openMsg(profileId) {
+  var p = PROFILES.find(function(x) { return x.id === profileId; });
+  if (!p) return;
+  currentMsgProfile = p;
+  document.getElementById('msg-to-pic').textContent = p.initials;
+  document.getElementById('msg-title').textContent = p.name;
+  document.getElementById('msg-to-role').textContent = p.role;
+
+  // Restore or init conversation
+  var body = document.getElementById('msg-body');
+  body.innerHTML = '';
+  var msgs = conversations[profileId] || [{ from: 'them', text: 'Hi! I saw your work on ScaffoldHQ — really impressive. Would love to connect and collaborate!', time: 'Earlier' }];
+  conversations[profileId] = msgs;
+  msgs.forEach(function(m) { appendBubble(m.from, m.text, m.time, false); });
+
+  document.getElementById('msg-modal').classList.add('open');
+  document.getElementById('modal-bg').classList.add('open');
+  document.getElementById('msg-input').focus();
+}
+
+function appendBubble(from, text, time, scroll) {
+  var body = document.getElementById('msg-body');
+  var b = document.createElement('div');
+  b.className = 'msg-bubble ' + (from === 'me' ? 'me' : 'them');
+  b.innerHTML = escHtml(text) + '<span class="msg-time">' + escHtml(time) + '</span>';
+  body.appendChild(b);
+  if (scroll !== false) body.scrollTop = body.scrollHeight;
+}
+
+function sendMsg() {
+  var input = document.getElementById('msg-input');
+  var text = input.value.trim();
+  if (!text || !currentMsgProfile) return;
+
+  // Spam detection — block repeated identical messages
+  var msgs = conversations[currentMsgProfile.id] || [];
+  var last3 = msgs.slice(-3).filter(function(m) { return m.from === 'me'; });
+  if (last3.length >= 3 && last3.every(function(m) { return m.text === text; })) {
+    showToast('Spam detected. Please send a unique message.', 'error');
+    return;
+  }
+  // Block extremely long messages
+  if (text.length > 1000) { showToast('Message too long (max 1000 characters).', 'warn'); return; }
+
+  var now = new Date();
+  var timeStr = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+  msgs.push({ from: 'me', text: text, time: timeStr });
+  conversations[currentMsgProfile.id] = msgs;
+  appendBubble('me', text, timeStr, true);
+  input.value = '';
+  input.style.height = 'auto';
+
+  // Simulate reply after 1.2s
+  setTimeout(function() {
+    var replies = [
+      'Thanks for reaching out! Happy to collaborate.',
+      'That sounds great! Let us set up a time to discuss.',
+      'Interesting idea — send me your project outline.',
+      'Absolutely! I have been working on something similar.',
+      'Sure! Let me review your work and get back to you.'
+    ];
+    var reply = replies[Math.floor(Math.random() * replies.length)];
+    var replyTime = new Date();
+    var rts = replyTime.getHours().toString().padStart(2,'0') + ':' + replyTime.getMinutes().toString().padStart(2,'0');
+    msgs.push({ from: 'them', text: reply, time: rts });
+    appendBubble('them', reply, rts, true);
+  }, 1200 + Math.random() * 800);
+}
+
+// Textarea auto-grow
+document.getElementById('msg-input').addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+});
+
+// Send on Enter (Shift+Enter = newline)
+document.getElementById('msg-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+});
+document.getElementById('msg-send-btn').addEventListener('click', sendMsg);
+
+function closeMsg() {
+  document.getElementById('msg-modal').classList.remove('open');
+  document.getElementById('modal-bg').classList.remove('open');
+  currentMsgProfile = null;
+}
+document.getElementById('msg-close-btn').addEventListener('click', closeMsg);
+
+/* ===== BLOCK ===== */
+var pendingBlockId = null;
+
+function openBlock(profileId, profileName) {
+  pendingBlockId = profileId;
+  document.getElementById('block-desc').textContent = profileName + ' will no longer be able to view your profile, message you, or appear in your search results. Please select a reason.';
+  document.getElementById('block-modal').classList.add('open');
+  document.getElementById('modal-bg').classList.add('open');
+}
+
+function closeBlock() {
+  document.getElementById('block-modal').classList.remove('open');
+  document.getElementById('modal-bg').classList.remove('open');
+  pendingBlockId = null;
+}
+
+document.getElementById('block-cancel-btn').addEventListener('click', closeBlock);
+
+document.getElementById('block-confirm-btn').addEventListener('click', function() {
+  if (!pendingBlockId) return;
+  var reason = document.querySelector('input[name="block-reason"]:checked');
+  blockedIds[pendingBlockId] = true;
+  var card = document.getElementById('pcard-' + pendingBlockId);
+  if (card) { card.style.transition = 'opacity 0.3s'; card.style.opacity = '0'; setTimeout(function() { if (card.parentNode) card.parentNode.removeChild(card); }, 320); }
+  closeBlock();
+  showToast('Profile blocked and reported. Thank you for keeping ScaffoldHQ safe.', 'success');
+});
+
+/* ===== MODAL OVERLAY CLOSE ===== */
+document.getElementById('modal-bg').addEventListener('click', function() {
+  closeMsg(); closeBlock();
+});
+
+// ESC key closes modals
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeMsg(); closeBlock(); }
+});
+
+/* ===== NOTIFICATIONS ===== */
+document.getElementById('nav-notif-btn').addEventListener('click', function() {
+  document.getElementById('notif-dot').style.display = 'none';
+  showToast('3 new notifications — feature coming soon!', '');
+});
+
+/* ===== STREAM CARD KEYBOARD ===== */
+document.querySelectorAll('.stream-card').forEach(function(c) {
+  c.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.click(); } });
+});
+</script>
+</body>
+</html>
